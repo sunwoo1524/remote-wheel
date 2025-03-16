@@ -1,0 +1,4 @@
+vgamepad~=0.1.0
+TKinterModernThemes~=1.10.4
+qrcode[pil]~=8.0
+pillow
