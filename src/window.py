@@ -25,17 +25,12 @@ class App(tkmt.ThemedTKinterFrame):
 
         self.run_btn = self.Button("Start server", self.toggle_server)
 
-        self.host_label = self.Label(f"{host}:{self.bind_port.get()}")
+        self.host_label = self.Label("")
 
-        qrcode.make(f"{host}:{self.bind_port.get()}").save("qr.png")
-        qr_img = ImageTk.PhotoImage(Image.open("qr.png").resize((200, 200)))
-        self.qr_label = self.Label("", widgetkwargs={"image": qr_img})
+        self.qr_img: ImageTk.PhotoImage
+        self.qr_label = self.Label("")
 
         self.run()
-
-    # def change_host(self, *args):
-        
-
 
     def toggle_server(self):
         global is_server_running, server_thread
@@ -54,7 +49,6 @@ class App(tkmt.ThemedTKinterFrame):
             # change label and qr code
             bind_port = self.bind_port.get()
             qrcode.make(f"{host}:{bind_port}").save("qr.png")
-            qr_img = ImageTk.PhotoImage(Image.open("qr.png").resize((200, 200)))
-            self.qr_label.config(image=qr_img, cnf={"image": qr_img})
+            self.qr_img = ImageTk.PhotoImage(Image.open("qr.png").resize((200, 200)))
+            self.qr_label.config(image=self.qr_img)
             self.host_label.config(text=f"{host}:{bind_port}")
-                
