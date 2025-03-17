@@ -1,6 +1,5 @@
 import threading, socket
 import TKinterModernThemes as tkmt
-from TKinterModernThemes.WidgetFrame import Widget
 from PIL import ImageTk, Image
 import tkinter as tk
 import qrcode
@@ -18,10 +17,7 @@ class App(tkmt.ThemedTKinterFrame):
         super().__init__("Remote Wheel Desktop", "azure")
 
         self.bind_port = tk.StringVar(value="9999")
-        # self.bind_port.trace_add("write", self.change_host)
         self.bind_port_input = self.addLabelFrame("Port").Entry(textvariable=self.bind_port)
-        # self.bind_port_input.bind("<Return>", self.change_port)
-        # self.bind_port_input.insert(0, self.bind_port)
 
         self.run_btn = self.Button("Start server", self.toggle_server)
 
